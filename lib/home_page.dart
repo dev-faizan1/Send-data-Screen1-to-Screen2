@@ -34,34 +34,46 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: quotes
             .map(
-              (q) => Card(
-                  margin: const EdgeInsets.all(10.0),
-                  elevation: 2.0,
-                  color: Colors.red.shade400,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        '${q.quote}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          '${q.author}',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ],
-                  )),
+              (q) => QuoteCard(
+                q: Quotes(author: q.author,quote: q.quote),
+              ),
             )
             .toList(),
       ),
     );
+  }
+}
+
+class QuoteCard extends StatelessWidget {
+  final Quotes? q;
+ const QuoteCard({Key? key, this.q}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        margin: const EdgeInsets.all(10.0),
+        elevation: 2.0,
+        color: Colors.red.shade400,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              '${q?.quote}',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '${q?.author}',
+                textAlign: TextAlign.left,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ],
+        ));
   }
 }
