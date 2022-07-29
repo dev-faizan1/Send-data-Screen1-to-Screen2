@@ -1,15 +1,22 @@
-
+import 'package:data_passing/todo.dart';
+import 'package:data_passing/todo_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'home_page.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      title: 'Learning value passing',
-      theme: ThemeData.dark(),
-      color: Colors.amberAccent.shade400,
-      home: HomePage(),
+      title: 'Passing Data',
+      home: TodosScreen(
+        todos: List.generate(
+          20,
+          (i) =>  Todo(
+           title: 'Todo $i',
+           description: 'Description of $i',
+          ),
+        ),
+      ),
     ),
   );
 }
+
